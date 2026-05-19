@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import Package
+
 def home(request):
-    return render(request, "index.html")
+    packages = Package.objects.all()
+    return render(request, 'index.html', {'packages': packages})
 
 def holiday(request):
     return render(request, "holiday.html")
