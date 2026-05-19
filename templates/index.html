@@ -227,72 +227,40 @@
   <div class="container">
     <div class="row">
 
-      <!-- Card 1 -->
+      {% for i in packages %}
+
       <div class="col-md-4 col-lg-3 d-flex">
         <div class="card shadow-sm w-100 text-center p-3">
-          <img src="{% static 'images/place-1.jpg' %}" 
+
+          <img src="{{ i.image.url}}" 
                class="card-img-top"
                style="height:180px; object-fit:cover;"
                alt="Place">
+
           <div class="card-body">
-            <h5 class="card-title">Paris</h5>
-            <p class="card-text">Beautiful destination for holidays.</p>
-            <a href="#" class="btn btn-primary btn-sm">Explore</a>
+
+            <h5 class="card-title">
+              {{ i.title }}
+            </h5>
+
+            <p class="card-text">
+              {{ i.offer }}
+            </p>
+
+            <a href="#" class="btn btn-primary btn-sm">
+              Explore
+            </a>
+
           </div>
+
         </div>
       </div>
 
-      <!-- Card 2 -->
-      <div class="col-md-4 col-lg-3 d-flex">
-        <div class="card shadow-sm w-100 text-center p-3">
-          <img src="{% static 'images/place-2.jpg' %}" 
-               class="card-img-top"
-               style="height:180px; object-fit:cover;"
-               alt="Place">
-          <div class="card-body">
-            <h5 class="card-title">Dubai</h5>
-            <p class="card-text">Luxury travel and adventures.</p>
-            <a href="#" class="btn btn-primary btn-sm">Explore</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="col-md-4 col-lg-3 d-flex">
-        <div class="card shadow-sm w-100 text-center p-3">
-          <img src="{% static 'images/place-3.jpg' %}" 
-               class="card-img-top"
-               style="height:180px; object-fit:cover;"
-               alt="Place">
-          <div class="card-body">
-            <h5 class="card-title">Maldives</h5>
-            <p class="card-text">Enjoy beaches and resorts.</p>
-            <a href="#" class="btn btn-primary btn-sm">Explore</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="col-md-4 col-lg-3 d-flex">
-        <div class="card shadow-sm w-100 text-center p-3">
-          <img src="{% static 'images/place-4.jpg' %}" 
-               class="card-img-top"
-               style="height:180px; object-fit:cover;"
-               alt="Place">
-          <div class="card-body">
-            <h5 class="card-title">Thailand</h5>
-            <p class="card-text">Best food and nightlife spots.</p>
-            <a href="#" class="btn btn-primary btn-sm">Explore</a>
-          </div>
-        </div>
-      </div>
-
-      
-      
+      {% endfor %}
 
     </div>
   </div>
-</section>		
+</section>
 <section class="ftco-section services-section">
 			<div class="container">
 				<div class="row d-flex">
