@@ -10,47 +10,47 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
     
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
 
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
 
     
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
    <div class="container">
-     <a class="navbar-brand" href="index.html">Pacific<span>Travel Agency</span></a>
+     <a class="navbar-brand" href="{% url 'home' %}">Pacific<span>Travel Agency</span></a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
        <span class="oi oi-menu"></span> Menu
    </button>
 
    <div class="collapse navbar-collapse" id="ftco-nav">
        <ul class="navbar-nav ml-auto">
-         <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-         <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-         <li class="nav-item active"><a href="destination.html" class="nav-link">Destination</a></li>
-         <li class="nav-item"><a href="hotel.html" class="nav-link">Hotel</a></li>
-         <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+         <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+         <li class="nav-item"><a href="{% url 'Flights' %}" class="nav-link">Flights</a></li>
+         <li class="nav-item active"><a href="{% url 'Hotels' %}" class="nav-link">Hotels</a></li>
+         <li class="nav-item"><a href="{% url 'Cruise' %}" class="nav-link">Cruise</a></li>
+         <li class="nav-item"><a href="{% url 'Blog' %}" class="nav-link">Blog</a></li>
+         <li class="nav-item"><a href="{% url 'Contact' %}" class="nav-link">Contact</a></li>
      </ul>
  </div>
 </div>
 </nav>
 <!-- END nav -->
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_1.jpg');">
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{% static 'images/bg_1.jpg' %}')">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
       <div class="col-md-9 ftco-animate pb-5 text-center">
-         <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>Tour List <i class="fa fa-chevron-right"></i></span></p>
+         <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'Home' %}">Home <i class="fa fa-chevron-right"></i></a></span> <span>Tour List <i class="fa fa-chevron-right"></i></span></p>
          <h1 class="mb-0 bread">Tours List</h1>
      </div>
  </div>
@@ -137,7 +137,7 @@
     <div class="row">
        <div class="col-md-4 ftco-animate">
           <div class="project-wrap">
-             <a href="#" class="img" style="background-image: url(images/destination-1.jpg);">
+             <a href="#" class="img" style="background-image: url('{% static 'images/destination-1.jpg' %}');">
                 <span class="price">$550/person</span>
             </a>
             <div class="text p-4">
@@ -154,7 +154,7 @@
    </div>
    <div class="col-md-4 ftco-animate">
       <div class="project-wrap">
-         <a href="#" class="img" style="background-image: url(images/destination-2.jpg);">
+         <a href="#" class="img" style="background-image: url('{% static 'images/destination-2.jpg' %}');">
             <span class="price">$550/person</span>
         </a>
         <div class="text p-4">
@@ -171,7 +171,7 @@
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url(images/destination-3.jpg);">
+     <a href="#" class="img" style="background-image: url('{% static 'images/destination-3.jpg' %} ')">
         <span class="price">$550/person</span>
     </a>
     <div class="text p-4">
@@ -189,7 +189,7 @@
 
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url(images/destination-4.jpg);">
+     <a href="#" class="img" style="background-image: url('{% static 'images/destination-4.jpg' %} ')">
         <span class="price">$550/person</span>
     </a>
     <div class="text p-4">
