@@ -20,7 +20,12 @@ from tours import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
-    path('home/', views.home),
-    path('about/', views.about),
-];
+
+    path('', views.home, name='home'),
+    path('holiday/', views.holiday, name='holiday'),
+    path('flight/', views.flight, name='flight'),
+    path('cruise/', views.cruise, name='cruise'),
+    path('hotel/', views.hotel, name='hotel'),
+    path('blog/', views.blog, name='blog'),
+    path('contact/', views.contact, name='contact'),
+]
