@@ -1,10 +1,8 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse("Welcome to Tripzeo Home Page")
+    return render(request, "index.html")
 
 def about(request):
-    return HttpResponse("About Tripzeo")
+    return render(request, "about.html")
