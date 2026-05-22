@@ -35,7 +35,198 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+				<li class="nav-item active position-relative"
+    style="list-style:none;">
+
+    <!-- HOME BUTTON -->
+    <a href="{% url 'home' %}"
+       class="nav-link mega-home-btn"
+       style="
+       color:white;
+       font-weight:700;
+       padding:12px 18px;
+       display:block;
+       text-decoration:none;
+       ">
+       Home
+    </a>
+
+    <!-- MEGA MENU -->
+    <div class="mega-home-menu"
+         style="
+         position:absolute;
+         top:100%;
+         left:50%;
+         transform:translateX(-50%);
+         width:1100px;
+         background:white;
+         border-radius:18px;
+         box-shadow:0 15px 50px rgba(0,0,0,0.15);
+         display:flex;
+         padding:35px;
+         gap:30px;
+         z-index:99999;
+
+         opacity:0;
+         visibility:hidden;
+
+         transition:0.3s ease;
+         ">
+
+        <!-- SECTION 1 -->
+        <div style="flex:1;">
+
+            <h4 style="
+                font-size:22px;
+                margin-bottom:20px;
+                color:#111;
+                font-weight:700;
+            ">
+                Holiday Packages
+            </h4>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Kashmir Tours
+            </a>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Rajasthan Tours
+            </a>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Kerala Packages
+            </a>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Goa Holidays
+            </a>
+
+        </div>
+
+        <!-- VERTICAL LINE -->
+        <div style="
+            width:1px;
+            background:rgba(0,0,0,0.5);
+        "></div>
+
+        <!-- SECTION 2 -->
+        <div style="flex:1;">
+
+            <h4 style="
+                font-size:22px;
+                margin-bottom:20px;
+                color:#111;
+                font-weight:700;
+            ">
+                International
+            </h4>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Europe Tours
+            </a>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Bali Packages
+            </a>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Singapore Tours
+            </a>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Japan Holidays
+            </a>
+
+        </div>
+
+        <!-- VERTICAL LINE -->
+        <div style="
+            width:1px;
+            background:rgba(0,0,0,0.5);
+        "></div>
+
+        <!-- SECTION 3 -->
+        <div style="flex:1;">
+
+            <h4 style="
+                font-size:22px;
+                margin-bottom:20px;
+                color:#111;
+                font-weight:700;
+            ">
+                Unique Experiences
+            </h4>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Trekking Tours
+            </a>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Camping Tours
+            </a>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Cruise Packages
+            </a>
+
+            <a href="#"
+               style="display:block;
+               margin-bottom:12px;
+               text-decoration:none;
+               color:#555;">
+               Luxury Resorts
+            </a>
+
+        </div>
+
+    </div>
+
+</li>
+
 					<li class="nav-item"><a href="{% url 'flight' %}" class="nav-link">Flights</a></li>
 					<li class="nav-item"><a href="{% url 'hotel' %}" class="nav-link">Hotels</a></li>
 					<li class="nav-item"><a href="{% url 'cruise' %}" class="nav-link">Cruise</a></li>
@@ -838,6 +1029,47 @@
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 			<script src="{% static 'js/google-map.js' %}"></script>
 			<script src="{% static 'js/main.js' %}"></script>
+			<script>
+
+const homeBtn = document.querySelector(".mega-home-btn");
+const megaMenu = document.querySelector(".mega-home-menu");
+const parentLi = document.querySelector(".nav-item");
+
+/* CLICK OPEN */
+
+homeBtn.addEventListener("click", function(e){
+
+    e.preventDefault();
+
+    megaMenu.style.opacity =
+        megaMenu.style.opacity === "1" ? "0" : "1";
+
+    megaMenu.style.visibility =
+        megaMenu.style.visibility === "visible"
+        ? "hidden"
+        : "visible";
+
+});
+
+/* HOVER OPEN */
+
+parentLi.addEventListener("mouseenter", () => {
+
+    megaMenu.style.opacity = "1";
+    megaMenu.style.visibility = "visible";
+
+});
+
+/* HOVER CLOSE */
+
+parentLi.addEventListener("mouseleave", () => {
+
+    megaMenu.style.opacity = "0";
+    megaMenu.style.visibility = "hidden";
+
+});
+
+</script>
 			
 		</body>
 		</html>
