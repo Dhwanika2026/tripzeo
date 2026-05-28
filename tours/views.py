@@ -98,11 +98,6 @@ def package_detail(request, slug):
         }
     )
 
-
-
-
-
-
 def search_destination(request):
 
     destination = request.GET.get('destination')
