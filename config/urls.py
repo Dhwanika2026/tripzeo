@@ -1,35 +1,55 @@
-"""
-URL configuration for config project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
 from tours import views
 
 from django.conf import settings
 from django.conf.urls.static import static
+
 urlpatterns = [
+
     path('admin/', admin.site.urls),
 
     path('', views.home, name='home'),
+
     path('holiday/', views.holiday, name='holiday'),
+
     path('flight/', views.flight, name='flight'),
+
     path('cruise/', views.cruise, name='cruise'),
+
     path('hotel/', views.hotel, name='hotel'),
+
     path('blog/', views.blog, name='blog'),
+
     path('contact/', views.contact, name='contact'),
+
+    path('t-and-c/', views.terms_conditions, name='terms_conditions'),
+
+    path('policy/', views.policy, name='policy'),
+
+    # IMPORTANT
+    path(
+        'search-destination/',
+        views.search_destination,
+        name='search_destination'
+    ),
+
+    path(
+        'package/<slug:slug>/',
+        views.package_detail,
+        name='package_detail'
+    ),
+
+    # KEEP THIS ALWAYS AT LAST
+    path(
+        '<str:location>/',
+        views.destination_packages,
+        name='destination_packages'
+    ),
+
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)

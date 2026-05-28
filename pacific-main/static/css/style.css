@@ -10085,3 +10085,19 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+
+    .navbar {
+  padding: 0.2rem 1rem !important;
+  min-height: 60px;
+}
+
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.navbar-nav .nav-link {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}

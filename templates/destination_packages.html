@@ -1,0 +1,536 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>{{ location }} Tour Packages</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:#f5f5f5;
+            font-family:Poppins;
+        }
+
+        .sidebar{
+            background:#fff;
+            padding:25px;
+            border-radius:15px;
+            position:sticky;
+            top:20px;
+        }
+
+        .package-card{
+            background:#fff;
+            border-radius:20px;
+            overflow:hidden;
+            margin-bottom:30px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.08);
+            transition:0.3s;
+        }
+
+        .package-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .package-image{
+            width:100%;
+            height:300px;
+            object-fit:cover;
+        }
+
+        .package-content{
+            padding:20px;
+        }
+
+        .price{
+            font-size:32px;
+            font-weight:700;
+            color:#000;
+        }
+
+        .old-price{
+            text-decoration:line-through;
+            color:gray;
+            margin-right:10px;
+            font-size:20px;
+        }
+
+        .badge-type{
+            background:red;
+            color:white;
+            padding:6px 14px;
+            border-radius:30px;
+            font-size:14px;
+            display:inline-block;
+        }
+
+        .section-title{
+            font-size:35px;
+            font-weight:700;
+            margin-bottom:25px;
+        }
+
+        .category-heading{
+            font-size:28px;
+            font-weight:600;
+            margin:40px 0 20px;
+        }
+
+        .rating{
+            font-size:18px;
+            color:#f4b400;
+            font-weight:600;
+        }
+
+        .description{
+            color:#555;
+            font-size:16px;
+            margin-top:10px;
+        }
+
+        .duration{
+            font-weight:600;
+            margin-top:10px;
+        }
+
+        a{
+            text-decoration:none;
+            color:black;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container-fluid mt-4">
+
+    <div class="row">
+
+        <!-- SIDEBAR -->
+
+        <div class="col-md-3">
+
+            <div class="sidebar">
+
+                <h2 class="mb-4">Refine Search</h2>
+
+                <form method="GET">
+
+                    <!-- DURATION -->
+
+                    <h5>Duration</h5>
+
+                    <div class="mb-3">
+                        <input type="radio"
+                               name="duration"
+                               value="3N"
+                               onchange="this.form.submit()">
+                        3N
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="radio"
+                               name="duration"
+                               value="5N"
+                               onchange="this.form.submit()">
+                        5N
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="radio"
+                               name="duration"
+                               value="7N"
+                               onchange="this.form.submit()">
+                        7N
+                    </div>
+
+                    <hr>
+
+                    <!-- PACKAGE TYPE -->
+
+                    <h5>Package Type</h5>
+
+                    <div class="mb-3">
+                        <input type="radio"
+                               name="type"
+                               value="best"
+                               onchange="this.form.submit()">
+                        Best Seller
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="radio"
+                               name="type"
+                               value="custom"
+                               onchange="this.form.submit()">
+                        Customized
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="radio"
+                               name="type"
+                               value="group"
+                               onchange="this.form.submit()">
+                        Group Tour
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="radio"
+                               name="type"
+                               value="bike"
+                               onchange="this.form.submit()">
+                        Bike Tour
+                    </div>
+
+                    <hr>
+
+                    <!-- MONTH -->
+
+                    <h5>Month</h5>
+
+                    <div class="mb-3">
+                        <input type="radio"
+                               name="month"
+                               value="May"
+                               onchange="this.form.submit()">
+                        May
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="radio"
+                               name="month"
+                               value="June"
+                               onchange="this.form.submit()">
+                        June
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="radio"
+                               name="month"
+                               value="October"
+                               onchange="this.form.submit()">
+                        October
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- MAIN -->
+
+        <div class="col-md-9">
+
+            <!-- SORT -->
+
+            <div class="d-flex justify-content-end mb-4">
+
+                <form method="GET">
+
+                    <select
+                        name="sort"
+                        class="form-select"
+                        onchange="this.form.submit()"
+                        style="width:250px;">
+
+                        <option value="">Sort By</option>
+
+                        <option value="low">
+                            Price Low To High
+                        </option>
+
+                        <option value="high">
+                            Price High To Low
+                        </option>
+
+                        <option value="rating">
+                            Rating
+                        </option>
+
+                    </select>
+
+                </form>
+
+            </div>
+
+            <h1 class="section-title">
+                {{ location|title }} Tour Packages
+            </h1>
+
+            <!-- BEST SELLER -->
+
+            {% if best_packages %}
+
+            <h2 class="category-heading">
+                Best Seller Packages
+            </h2>
+
+            <div class="row">
+
+                {% for package in best_packages %}
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'package_detail' package.slug %}">
+
+                        <div class="package-card">
+
+                            <img src="{{ package.image.url }}"
+                                 class="package-image">
+
+                            <div class="package-content">
+
+                                <span class="badge-type">
+                                    Best Seller
+                                </span>
+
+                                <h3 class="mt-3">
+                                    {{ package.title }}
+                                </h3>
+
+                                <div class="rating">
+                                    ⭐ {{ package.rating }}
+                                </div>
+
+                                <p class="description">
+                                    {{ package.description }}
+                                </p>
+
+                                <p class="duration">
+                                    {{ package.duration }}
+                                </p>
+
+                                <span class="old-price">
+                                    ₹{{ package.old_price }}
+                                </span>
+
+                                <div class="price">
+                                    ₹{{ package.price }}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% endif %}
+
+            <!-- CUSTOMIZED -->
+
+            {% if custom_packages %}
+
+            <h2 class="category-heading">
+                Customized Packages
+            </h2>
+
+            <div class="row">
+
+                {% for package in custom_packages %}
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'package_detail' package.slug %}">
+
+                        <div class="package-card">
+
+                            <img src="{{ package.image.url }}"
+                                 class="package-image">
+
+                            <div class="package-content">
+
+                                <span class="badge-type">
+                                    Customized
+                                </span>
+
+                                <h3 class="mt-3">
+                                    {{ package.title }}
+                                </h3>
+
+                                <div class="rating">
+                                    ⭐ {{ package.rating }}
+                                </div>
+
+                                <p class="description">
+                                    {{ package.description }}
+                                </p>
+
+                                <p class="duration">
+                                    {{ package.duration }}
+                                </p>
+
+                                <span class="old-price">
+                                    ₹{{ package.old_price }}
+                                </span>
+
+                                <div class="price">
+                                    ₹{{ package.price }}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% endif %}
+
+            <!-- GROUP -->
+
+            {% if group_packages %}
+
+            <h2 class="category-heading">
+                Group Tour Packages
+            </h2>
+
+            <div class="row">
+
+                {% for package in group_packages %}
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'package_detail' package.slug %}">
+
+                        <div class="package-card">
+
+                            <img src="{{ package.image.url }}"
+                                 class="package-image">
+
+                            <div class="package-content">
+
+                                <span class="badge-type">
+                                    Group Tour
+                                </span>
+
+                                <h3 class="mt-3">
+                                    {{ package.title }}
+                                </h3>
+
+                                <div class="rating">
+                                    ⭐ {{ package.rating }}
+                                </div>
+
+                                <p class="description">
+                                    {{ package.description }}
+                                </p>
+
+                                <p class="duration">
+                                    {{ package.duration }}
+                                </p>
+
+                                <span class="old-price">
+                                    ₹{{ package.old_price }}
+                                </span>
+
+                                <div class="price">
+                                    ₹{{ package.price }}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% endif %}
+
+            <!-- BIKE -->
+
+            {% if bike_packages %}
+
+            <h2 class="category-heading">
+                Bike Tour Packages
+            </h2>
+
+            <div class="row">
+
+                {% for package in bike_packages %}
+
+                <div class="col-md-6">
+
+                    <a href="{% url 'package_detail' package.slug %}">
+
+                        <div class="package-card">
+
+                            <img src="{{ package.image.url }}"
+                                 class="package-image">
+
+                            <div class="package-content">
+
+                                <span class="badge-type">
+                                    Bike Tour
+                                </span>
+
+                                <h3 class="mt-3">
+                                    {{ package.title }}
+                                </h3>
+
+                                <div class="rating">
+                                    ⭐ {{ package.rating }}
+                                </div>
+
+                                <p class="description">
+                                    {{ package.description }}
+                                </p>
+
+                                <p class="duration">
+                                    {{ package.duration }}
+                                </p>
+
+                                <span class="old-price">
+                                    ₹{{ package.old_price }}
+                                </span>
+
+                                <div class="price">
+                                    ₹{{ package.price }}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
