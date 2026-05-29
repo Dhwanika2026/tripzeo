@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
+from .models import TourDestination
 
 from .models import Package
 
@@ -119,3 +120,11 @@ def search_destination(request):
         # IF PACKAGE NOT FOUND
         else:
          return redirect('home')
+        
+def home(request):
+
+ destinations = TourDestination.objects.all()
+
+ return render(request, 'index.html', {
+    'destinations': destinations
+})        

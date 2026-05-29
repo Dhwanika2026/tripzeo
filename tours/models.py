@@ -209,3 +209,52 @@ class PackageImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.package.title}"
+    
+
+
+
+
+
+class TourDestination(models.Model):
+
+
+ name = models.CharField(max_length=200)
+
+ slug = models.SlugField(
+ unique=True,
+ blank=True,
+ null=True
+ )
+
+ image = models.ImageField(
+    upload_to='tour-destinations/',
+    blank=True,
+    null=True
+ )
+
+ price = models.IntegerField(
+    blank=True,
+    null=True
+ )
+
+ duration = models.CharField(
+    max_length=100,
+    blank=True,
+    null=True
+ )
+
+ location = models.CharField(
+    max_length=200,
+    blank=True,
+    null=True
+ )
+
+ description = models.CharField(
+    max_length=255,
+    blank=True,
+    null=True
+ )
+
+ def __str__(self):
+    return self.name
+
