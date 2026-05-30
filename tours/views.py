@@ -128,3 +128,94 @@ def home(request):
  return render(request, 'index.html', {
     'destinations': destinations
 })        
+
+
+
+
+def package_booking(request, pk):
+
+    package = Package.objects.get(id=pk)
+
+    if request.method == "POST":
+
+        adults = int(request.POST.get('adults'))
+
+        children = int(request.POST.get('children'))
+
+        infants = int(request.POST.get('infants'))
+
+        travel_date = request.POST.get('travel_date')
+
+        mobile = request.POST.get('mobile')
+
+        email = request.POST.get('email')
+
+        # PRICE CALCULATION
+
+        adult_total = adults * package.price
+
+        child_total = children * (package.price * 0.7)
+
+        infant_total = infants * 10000
+
+        subtotal = adult_total + child_total + infant_total
+
+        gst = subtotal * 0.05
+
+        grand_total = subtotal + gst
+
+        booking = Booking.objects.create(
+
+            package_name=package.title,
+
+            adults=adults,
+
+            children=children,
+
+            infants=infants,
+
+            travel_date=travel_date,
+
+            mobile=mobile,
+
+            email=email,
+
+            total_price=grand_total
+
+        )
+
+        return render(
+
+            request,
+
+            'booking_summary.html',
+
+            {
+
+                'package': package,
+
+                'booking': booking,
+
+                'subtotal': subtotal,
+
+                'gst': gst,
+
+                'grand_total': grand_total
+
+            }
+
+        )
+
+    return render(
+
+        request,
+
+        'package_detail.html',
+
+        {
+
+            'package': package
+
+        }
+
+    )

@@ -51,6 +51,8 @@ class Package(models.Model):
 
     image = models.ImageField(upload_to='packages/')
 
+    pdf = models.FileField(upload_to='package_pdfs/')
+
     price = models.IntegerField()
 
     old_price = models.IntegerField(
@@ -258,3 +260,29 @@ class TourDestination(models.Model):
  def __str__(self):
     return self.name
 
+
+
+
+class Booking(models.Model):
+
+    package_name = models.CharField(max_length=200)
+
+    adults = models.IntegerField(default=1)
+
+    children = models.IntegerField(default=0)
+
+    infants = models.IntegerField(default=0)
+
+    travel_date = models.DateField()
+
+    mobile = models.CharField(max_length=20)
+
+    email = models.EmailField()
+
+    total_price = models.IntegerField(default=0)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+
+        return self.package_name

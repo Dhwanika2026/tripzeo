@@ -47,6 +47,12 @@ urlpatterns = [
         name='destination_packages'
     ),
 
+    path(
+        'booking/<int:pk>/',
+        views.package_booking,
+        name='package_booking'
+    ),
+
 ]
 
 urlpatterns += static(
