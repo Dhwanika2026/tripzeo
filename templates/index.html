@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-	<title>Pacific - Free Bootstrap 4 Template by Colorlib</title>
+	<title>TRIPZEO</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -31,8 +31,13 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="{% url 'home' %}"><img style="height:80px;" src="static\images\logo1.png"
-					alt=""></span></a>
+		<a class="navbar-brand" href="{% url 'home' %}">
+    <img 
+        src="{% static 'images/Tripzeo Logo.png' %}"
+        alt="Tripzeo Logo"
+        style="height:100px; width:100px;   border-radius:50%; object-fit:cover; background:#fff;"
+    >
+</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
 				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
@@ -918,7 +923,7 @@
 			<div class="row mb-5">
 				<div class="col-md pt-5">
 					<div class="ftco-footer-widget pt-md-5 mb-4">
-						<h2 class="ftco-heading-2"><img style="height: 60px;" src="static\images\logo1.png" alt=""></h2>
+						<h2 class="ftco-heading-2"><img style="height: 60px;" src="{% static 'images/Tripzeo Logo.png' %}" alt=""></h2>
 						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
 							there live the blind texts.</p>
 						<ul class="ftco-footer-social list-unstyled float-md-left float-lft">
