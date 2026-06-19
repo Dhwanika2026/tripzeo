@@ -32,6 +32,35 @@ def terms_conditions(request):
 def policy(request):
     return render(request, "policy.html")
 
+def event(request):
+    return render(request, "event.html")
+
+def sport(request):
+    return render(request, "sport.html")
+
+def villa(request):
+    return render(request, "villa.html")
+
+def tour(request):
+    return render(request, "tour.html")
+
+def forex(request):
+    return render(request, "forex.html")
+
+def cab(request):
+    return render(request, "cab.html")
+
+def insurance(request):
+    return render(request, "insurance.html")
+
+# def holiday(request):
+#     return render(request, "holiday.html")
+
+def visa(request):
+    return render(request, "visa.html")
+
+
+
 
 
 from django.shortcuts import render

@@ -21,14 +21,93 @@
 
 	<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
 	<link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 	<link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="home.css">
 </head>
+<style>
+.why-choose-us{
+    padding:60px 20px;
+    background:linear-gradient(135deg,#fafafa,#79baa3);
+}
 
+.choose-title{
+    text-align:center;
+    color:#fff;
+    font-size:48px;
+    font-weight:700;
+    margin-bottom:50px;
+}
+
+.why-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    flex-wrap:nowrap; /* Keep all in one row */
+}
+
+.choose-circle{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:#f5f5f5;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    transition:.3s;
+}
+
+.choose-circle i{
+    font-size:40px;
+    color:#0c4b7d;
+    margin-bottom:12px;
+}
+
+.choose-circle h5{
+    color:#0c4b7d;
+    font-size:16px;
+    font-weight:600;
+    margin:0;
+    padding:0 10px;
+    line-height:1.3;
+}
+
+.choose-circle:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+.choose-title{
+    width:100%;
+    display:block;
+    text-align:center !important;
+}
+</style>
 <body>
+    <div style="background:#0d4d7c;padding:10px 20px;">
+    <div style="display:flex;justify-content:flex-end;align-items:center;gap:12px;width:100%;">
+
+        <span style="color:white;font-weight:600;">
+            <i class="fa fa-phone"></i> +91 6359891313
+        </span>
+
+        <button style="background:white;color:#aaaeb1;border:none;padding:8px 18px;border-radius:25px;">
+            Contact Us
+        </button>
+
+        <button style="background:#ff9800;color:white;border:none;padding:8px 18px;border-radius:25px;">
+            Enquiry Form
+        </button>
+
+    </div>
+</div>
+
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
 		<a class="navbar-brand" href="{% url 'home' %}">
@@ -43,7 +122,7 @@
 				<span class="oi oi-menu"></span> Menu
 			</button>
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
+			<div class="collapse navbar-collapse" id="ftco-nav" style="margin-top:12px;">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active position-relative" style="list-style:none;">
 
@@ -54,7 +133,7 @@
        display:block;
        text-decoration:none;
        ">
-							Home
+							<i class="fas fa-home mr-1"></i>Home
 						</a>
 
 						<!-- MEGA MENU -->
@@ -218,10 +297,78 @@
 						</div>
 
 					</li>
-					<li class="nav-item"><a href="{% url 'flight' %}" class="nav-link">Flights</a></li>
-					<li class="nav-item"><a href="{% url 'hotel' %}" class="nav-link">Hotels</a></li>
-					<li class="nav-item"><a href="{% url 'cruise' %}" class="nav-link">Cruise</a></li>
-					<li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+					<li class="nav-item">
+                      <a href="{% url 'flight' %}" class="nav-link">
+                         <i class="fas fa-plane mr-1"></i> Flights
+                      </a>
+                        </li>
+					<li class="nav-item">
+                       <a href="{% url 'hotel' %}" class="nav-link">
+                         <i class="fas fa-hotel mr-1"></i> Hotels
+                      </a>
+                    </li>
+					<li class="nav-item">
+                        <a href="{% url 'cruise' %}" class="nav-link">
+                          <i class="fas fa-ship mr-1"></i> Cruise
+                        </a>
+                    </li>
+					<li class="nav-item">
+                      <a href="{% url 'villa' %}" class="nav-link">
+                        <i class="fas fa-home mr-1"></i> Villas & Homestays
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{% url 'holiday' %}" class="nav-link">
+                        <i class="fas fa-umbrella-beach mr-1"></i> Holiday Packages
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{% url 'cab' %}" class="nav-link">
+                       <i class="fas fa-taxi mr-1"></i> Cabs
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{% url 'tour' %}" class="nav-link">
+                        <i class="fas fa-map-marked-alt mr-1"></i> Tours & Attractions
+                       </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{% url 'visa' %}" class="nav-link">
+                        <i class="fas fa-passport mr-1"></i> Visa
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{% url 'forex' %}" class="nav-link">
+                        <i class="fas fa-money-bill-wave mr-1"></i> Forex Cards & Currency
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a href="{% url 'insurance' %}" class="nav-link">
+                        <i class="fas fa-shield-alt mr-1"></i> Travel Insurance
+                      </a>
+                    </li>
+
+					<li class="nav-item">
+                       <a href="{% url 'events' %}" class="nav-link">
+                         <i class="fas fa-calendar-alt mr-1"></i> Events
+                       </a>
+                    </li>
+					<li class="nav-item">
+                      <a href="{% url 'sports' %}" class="nav-link">
+                        <i class="fas fa-futbol mr-1"></i> Sports
+                       </a>
+					</li>
+					<li class="nav-item">
+                       <a href="{% url 'contact' %}" class="nav-link">
+                         <i class="fas fa-phone-alt mr-1"></i> Contact
+                       </a>
+                    </li>
 				</ul>
 			</div>
 		</div>
@@ -361,6 +508,51 @@
 			</div>
 		</div>
 	</section>
+
+
+	<section class="why-choose-us">
+
+    <div class="container-fluid">
+
+        <h2 class="choose-title">Why Choose Us</h2>
+
+        <div class="why-wrapper">
+
+            <div class="choose-circle">
+                <i class="fas fa-clock"></i>
+                <h5>Instant Confirmation</h5>
+            </div>
+
+            <div class="choose-circle">
+                <i class="fas fa-user-friends"></i>
+                <h5>Happy Clients</h5>
+            </div>
+
+            <div class="choose-circle">
+                <i class="fas fa-users"></i>
+                <h5>Trained Team</h5>
+            </div>
+
+            <div class="choose-circle">
+                <i class="fas fa-tags"></i>
+                <h5>Best Price</h5>
+            </div>
+
+            <div class="choose-circle">
+                <i class="fas fa-headset"></i>
+                <h5>24/7 Support</h5>
+            </div>
+
+            <div class="choose-circle">
+                <i class="fas fa-award"></i>
+                <h5>Quality Service</h5>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row">
@@ -401,30 +593,7 @@
 
 
 
-	<section class="partner-section">
-
-		<h2 class="partner-heading">
-			We Work With Trusted Partners
-		</h2>
-
-
-		<marquee direction="left" scrollamount="8">
-
-			<img src="{% static 'images/akbartravel.png' %}" class="partner-img" alt="">
-
-			<img src="{% static 'static\images\akbartravel.png' %}" class="partner-img" alt="">
-
-			<img src="{% static 'images/mmt.png' %}" class="partner-img" alt="">
-
-			<img src="{% static 'images/qatar.jpg' %}" class="partner-img" alt="">
-
-			<img src="{% static 'images/sotc logo.png' %}" class="partner-img" alt="">
-			<img src="{% static 'images/ajamodi.png' %}" class="partner-img" alt="">
-			<img src="{% static 'images/tc.png' %}" class="partner-img" alt="">
-
-			<img src="{% static 'images/flamingo.jpg' %}" class="partner-img" alt="">
-		</marquee>
-	</section>
+	
 
 	<section class="ftco-section services-section">
 		<div class="container">

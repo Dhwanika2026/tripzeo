@@ -27,6 +27,17 @@ urlpatterns = [
 
     path('policy/', views.policy, name='policy'),
 
+    path('event/', views.event, name='events'),
+
+    path('sport/', views.sport, name='sports'),
+    path('villa/', views.villa, name='villa'),
+    path('tour/', views.tour, name='tour'),
+    # path('holiday/', views.holiday, name='holiday'),
+    path('forex/', views.forex, name='forex'),
+    path('cab/', views.cab, name='cab'),
+    path('insurance/', views.insurance, name='insurance'),
+    path('visa/', views.visa, name='visa'),
+
     # IMPORTANT
     path(
         'search-destination/',
