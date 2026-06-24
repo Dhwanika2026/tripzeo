@@ -145,12 +145,14 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 from django.contrib.auth.models import User
 
 try:
-    if not User.objects.filter(username='admin').exists():
+    if not User.objects.filter(username='tripzeo').exists():
         User.objects.create_superuser(
             username='tripzeo',
             email='dhwanikaoverseas@gmail.com',
-            password='tripzeo'
+            password='Tripzeo@123'
         )
-        print("Superuser created")
+        print("✅ Superuser created successfully")
+    else:
+        print("✅ Superuser already exists")
 except Exception as e:
-    print(e)
+    print("❌ Error:", e)
