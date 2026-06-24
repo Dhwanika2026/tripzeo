@@ -1,0 +1,330 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{ hotel.name }}</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<style>
+
+body{
+    background:#fff;
+}
+
+.hotel-banner{
+    height:500px;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    width:100%;
+}
+
+.hotel-heading{
+    background:#fff;
+    padding:40px 0;
+    border-bottom:1px solid #eee;
+}
+
+.hotel-heading h1{
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.section-title{
+    font-size:30px;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.gallery-img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.amenity-box{
+    border:1px solid #eee;
+    padding:15px;
+    text-align:center;
+    border-radius:8px;
+    margin-bottom:15px;
+    background:#fff;
+}
+
+.room-card{
+    border:1px solid #eee;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:30px;
+}
+
+.room-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.contact-box{
+    background:#f8f9fa;
+    padding:25px;
+    border-radius:10px;
+    position:sticky;
+    top:20px;
+}
+
+.contact-box h4{
+    font-weight:700;
+}
+
+.btn-book{
+    width:100%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO IMAGE -->
+
+<section class="hotel-banner"
+style="background-image:url('{{ hotel.featured_image.url }}');">
+</section>
+
+<!-- HOTEL NAME -->
+
+<section class="hotel-heading">
+
+    <div class="container">
+
+        <h1>{{ hotel.name }}</h1>
+
+        <p class="text-muted mb-0">
+
+            <i class="fa fa-location-dot"></i>
+
+            {{ hotel.location }}
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- MAIN CONTENT -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="row">
+
+<!-- LEFT SIDE -->
+
+<div class="col-lg-8">
+
+    <!-- ABOUT -->
+
+    <h2 class="section-title">
+        About Hotel
+    </h2>
+
+    <p>
+        {{ hotel.about_hotel }}
+    </p>
+
+    <!-- GALLERY -->
+
+    {% if hotel.gallery.all %}
+
+    <h2 class="section-title mt-5">
+        Gallery
+    </h2>
+
+    <div class="row">
+
+        {% for image in hotel.gallery.all %}
+
+        <div class="col-md-4">
+
+            <img src="{{ image.image.url }}"
+                 class="gallery-img">
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+    <!-- AMENITIES -->
+
+    <h2 class="section-title mt-5">
+        Amenities
+    </h2>
+
+    <div class="row">
+
+        {% for amenity in hotel.amenities.all %}
+
+        <div class="col-md-4">
+
+            <div class="amenity-box">
+
+                <i class="fa fa-check-circle"></i>
+
+                {{ amenity.name }}
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+            No amenities added.
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- ROOMS -->
+
+    <h2 class="section-title mt-5">
+        Room Types
+    </h2>
+
+    {% for room in hotel.rooms.all %}
+
+    <div class="room-card">
+
+        {% if room.room_image %}
+        <img src="{{ room.room_image.url }}">
+        {% endif %}
+
+        <div class="p-4">
+
+            <h4>{{ room.room_name }}</h4>
+
+            <p>
+                {{ room.description }}
+            </p>
+
+            {% if room.price %}
+            <h5>
+                ₹ {{ room.price }}
+            </h5>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <p>No room information available.</p>
+
+    {% endfor %}
+
+    <!-- MAP -->
+
+    {% if hotel.map_link %}
+
+    <h2 class="section-title mt-5">
+        Hotel Location
+    </h2>
+
+    <iframe
+        src="{{ hotel.map_link }}"
+        width="100%"
+        height="450"
+        style="border:0;"
+        loading="lazy"
+        allowfullscreen>
+    </iframe>
+
+    {% endif %}
+
+</div>
+
+<!-- RIGHT SIDEBAR -->
+
+<div class="col-lg-4">
+
+<div class="contact-box">
+
+    <h4>{{ hotel.name }}</h4>
+
+    <hr>
+
+    {% if hotel.address %}
+    <p>
+        <strong>Address</strong><br>
+        {{ hotel.address }}
+    </p>
+    {% endif %}
+
+    {% if hotel.phone %}
+    <p>
+        <strong>Phone</strong><br>
+        {{ hotel.phone }}
+    </p>
+    {% endif %}
+
+    {% if hotel.email %}
+    <p>
+        <strong>Email</strong><br>
+        {{ hotel.email }}
+    </p>
+    {% endif %}
+
+    {% if hotel.check_in %}
+    <p>
+        <strong>Check-In</strong><br>
+        {{ hotel.check_in }}
+    </p>
+    {% endif %}
+
+    {% if hotel.check_out %}
+    <p>
+        <strong>Check-Out</strong><br>
+        {{ hotel.check_out }}
+    </p>
+    {% endif %}
+
+    <a href="#"
+       class="btn btn-primary btn-book">
+       Book Now
+    </a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

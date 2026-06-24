@@ -64,6 +64,21 @@ urlpatterns = [
         name='package_booking'
     ),
 
+
+    # urls.py
+
+path(
+    'hotel/<slug:slug>/',
+    views.hotel_detail,
+    name='hotel_detail'
+),
+
+path(
+    'cruise/<slug:slug>/',
+    views.cruise_detail,
+    name='cruise_detail'
+)
+
 ]
 
 urlpatterns += static(

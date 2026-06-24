@@ -1,8 +1,9 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
 from .models import TourDestination
-
+from .models import Hotel
 from .models import Package
+from .models import Cruise
 
 def home(request):
     packages = Package.objects.all()
@@ -18,8 +19,15 @@ def cruise(request):
     return render(request, "cruise.html")
 
 def hotel(request):
-    return render(request, "hotel.html")
+    hotels = Hotel.objects.all()
 
+    return render(
+        request,
+        'hotel.html',
+        {
+            'hotels': hotels
+        }
+    )
 def blog(request):
     return render(request, "blog.html")
 
@@ -247,4 +255,43 @@ def package_booking(request, pk):
 
         }
 
+    )
+
+def hotel_detail(request, slug):
+    hotel = get_object_or_404(Hotel, slug=slug)
+
+    return render(
+        request,
+        'hotel_detail.html',
+        {
+            'hotel': hotel
+        }
+    )
+
+from django.shortcuts import get_object_or_404
+
+def cruise_detail(request, slug):
+    cruise = get_object_or_404(
+        Cruise,
+        slug=slug
+    )
+
+    return render(
+        request,
+        'cruise_detail.html',
+        {
+            'cruise': cruise
+        }
+    )
+
+def cruise(request):
+
+    cruises = Cruise.objects.all().order_by('departure_date')
+
+    return render(
+        request,
+        'cruise.html',
+        {
+            'cruises': cruises
+        }
     )

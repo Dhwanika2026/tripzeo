@@ -286,3 +286,198 @@ class Booking(models.Model):
     def __str__(self):
 
         return self.package_name
+    
+
+    
+from django.db import models
+
+class Hotel(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+
+    featured_image = models.ImageField(
+        upload_to='hotels/',
+        blank=True,
+        null=True
+    )
+
+    location = models.CharField(max_length=200)
+
+    address = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    short_description = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    about_hotel = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    map_link = models.URLField(
+        blank=True,
+        null=True
+    )
+
+    phone = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True
+    )
+
+    email = models.EmailField(
+        blank=True,
+        null=True
+    )
+
+    check_in = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True
+    )
+
+    check_out = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True
+    )
+
+    def __str__(self):
+        return self.name
+    
+class HotelAmenity(models.Model):
+    hotel = models.ForeignKey(
+        Hotel,
+        on_delete=models.CASCADE,
+        related_name='amenities'
+    )
+
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class HotelRoom(models.Model):
+    hotel = models.ForeignKey(
+        Hotel,
+        on_delete=models.CASCADE,
+        related_name='rooms'
+    )
+
+    room_name = models.CharField(max_length=200)
+
+    room_image = models.ImageField(
+        upload_to='rooms/',
+        blank=True,
+        null=True
+    )
+
+    description = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    price = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True
+    )        
+
+class Cruise(models.Model):
+    title = models.CharField(max_length=200)
+
+    slug = models.SlugField(unique=True)
+
+    image = models.ImageField(
+        upload_to='cruises/'
+    )
+
+    departure_date = models.DateField()
+
+    nights = models.IntegerField()
+
+    origin = models.CharField(
+        max_length=100
+    )
+
+    destination = models.CharField(
+        max_length=100
+    )
+
+    # itinerary = models.TextField(
+    #     help_text="Mumbai > Goa > Lakshadweep > Mumbai"
+    # )
+
+    ship_name = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True
+    )
+
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    short_description = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    featured = models.BooleanField(
+        default=False
+    )
+
+    def __str__(self):
+        return self.title
+
+class CruiseGallery(models.Model):
+    cruise = models.ForeignKey(
+        Cruise,
+        on_delete=models.CASCADE,
+        related_name='gallery'
+    )
+
+    image = models.ImageField(
+        upload_to='cruise_gallery/'
+    )
+
+class CruiseInclusion(models.Model):
+
+    cruise = models.ForeignKey(
+        Cruise,
+        on_delete=models.CASCADE,
+        related_name='inclusions'
+    )
+
+    title = models.CharField(
+        max_length=200
+    )
+
+    def __str__(self):
+        return self.title
+    
+class CruiseItinerary(models.Model):
+    cruise = models.ForeignKey(
+        Cruise,
+        on_delete=models.CASCADE,
+        related_name='itineraries'
+    )
+
+    day = models.PositiveIntegerField()
+
+    title = models.CharField(max_length=200)
+
+    short_description = models.TextField()
+
+    image = models.ImageField(
+        upload_to='cruise_itinerary/'
+    )
+
+    def __str__(self):
+        return f"Day {self.day} - {self.title}"    
+
