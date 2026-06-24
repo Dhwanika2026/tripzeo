@@ -140,3 +140,17 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+from django.contrib.auth.models import User
+
+try:
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser(
+            username='tripzeo',
+            email='dhwanikaoverseas@gmail.com',
+            password='tripzeo'
+        )
+        print("Superuser created")
+except Exception as e:
+    print(e)
